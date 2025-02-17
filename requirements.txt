@@ -1,6 +1,7 @@
 tensorflow
-keras~=3.8.0
+keras
 pandas
 matplotlib
-numpy~=2.0.2
-scikit-learn~=1.6.1
+numpy
+scikit-learn
+seaborn
