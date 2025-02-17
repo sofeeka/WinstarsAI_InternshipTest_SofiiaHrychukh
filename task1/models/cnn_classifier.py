@@ -2,7 +2,7 @@ from mnist_classifier_interface import MnistClassifierInterface
 import numpy as np
 
 
-class CNNModel(MnistClassifierInterface):
+class CNNClassifier(MnistClassifierInterface):
     def train(self, X_train: np.array, y_train: np.array):
         # todo
         pass
