@@ -1,1 +1,4 @@
 .idea/
+
+task1/models/__pycache__
+task1/utils/__pycache__
