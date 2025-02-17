@@ -1,4 +1,4 @@
-from mnist_classifier_interface import MnistClassifierInterface
+from task1.models.mnist_classifier_interface import MnistClassifierInterface
 import numpy as np
 
 
