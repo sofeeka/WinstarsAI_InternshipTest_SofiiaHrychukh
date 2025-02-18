@@ -13,7 +13,7 @@ class MnistClassifier:
             return RFClassifier()
         elif algorithm == 'cnn':
             return CNNClassifier()
-        elif algorithm == 'nn':
+        elif algorithm == 'nn' or algorithm == 'fnn':
             return FNNClassifier()
         else:
             raise ValueError(f"Invalid algorithm '{algorithm}'.")
