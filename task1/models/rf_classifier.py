@@ -5,8 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 class RFClassifier(MnistClassifierInterface):
     def __init__(self, n_estimators=50):
-        self.n_estimators = n_estimators
-        self.model = RandomForestClassifier(n_estimators=self.n_estimators)
+        self.model = RandomForestClassifier(n_estimators=n_estimators)
 
     def train(self, X_train: np.array, y_train: np.array):
         X_train_reshaped = X_train.reshape(X_train.shape[0], 28 * 28)
