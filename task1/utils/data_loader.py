@@ -13,9 +13,6 @@ def load_mnist_data():
     assert y_train.shape == (60000,)
     assert y_test.shape == (10000,)
 
-    x_train = x_train.reshape(x_train.shape[0], 28 * 28)
-    x_test = x_test.reshape(x_test.shape[0], 28 * 28)
-
     x_train = x_train.astype(np.float32) / 255.0
     x_test = x_test.astype(np.float32) / 255.0
 

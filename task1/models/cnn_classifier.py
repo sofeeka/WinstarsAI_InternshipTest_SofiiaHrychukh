@@ -18,7 +18,7 @@ class CNNClassifier(MnistClassifierInterface):
         ])
 
     def train(self, X_train: np.array, y_train: np.array):
-        X_train_reshaped = X_train.reshape(-1, 28, 28, 1).astype("float32")
+        X_train_reshaped = X_train.reshape(-1, 28, 28, 1)
 
         self.model.compile(optimizer='adam',
                            loss='sparse_categorical_crossentropy',
@@ -27,4 +27,6 @@ class CNNClassifier(MnistClassifierInterface):
         self.model.fit(X_train_reshaped, y_train, epochs=5)
 
     def predict(self, data: np.array):
-        return self.model.predict(data)
+        data_reshaped = data.reshape(-1, 28, 28, 1)
+        prediction = self.model.predict(data_reshaped)
+        return np.argmax(prediction)

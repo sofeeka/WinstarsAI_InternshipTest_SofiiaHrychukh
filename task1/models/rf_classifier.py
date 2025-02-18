@@ -4,12 +4,14 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 class RFClassifier(MnistClassifierInterface):
-    def __init__(self, n_estimators=100):
+    def __init__(self, n_estimators=50):
         self.n_estimators = n_estimators
         self.model = RandomForestClassifier(n_estimators=self.n_estimators)
 
     def train(self, X_train: np.array, y_train: np.array):
-        self.model.fit(X_train, y_train)
+        X_train_reshaped = X_train.reshape(X_train.shape[0], 28 * 28)
+        self.model.fit(X_train_reshaped, y_train)
 
-    def predict(self, X_test: np.array):
-        return self.model.predict(X_test)
+    def predict(self, data: np.array):
+        data_reshaped = data.reshape(1, -1)
+        return self.model.predict(data_reshaped)
