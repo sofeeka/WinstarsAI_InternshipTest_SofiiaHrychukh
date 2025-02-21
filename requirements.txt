@@ -1,7 +1,12 @@
 tensorflow
+tf-keras
 keras
 pandas
 matplotlib
 numpy
 scikit-learn
 seaborn
+torch
+transformers
+datasets
+spacy
