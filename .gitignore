@@ -4,6 +4,9 @@ task1/models/__pycache__
 task1/utils/__pycache__
 
 task2/ner_model
+task2/vgg16
 
 task2/__pycache__
 task2/utils/__pycache__
+
+task2/data/animals10
