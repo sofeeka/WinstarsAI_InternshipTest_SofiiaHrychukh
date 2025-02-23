@@ -4,7 +4,7 @@ import spacy
 from spacy.training.example import Example
 
 from task2.utils.data_loader import load_ner_dataset_from_json, load_new_dataset_spacy_hardcoded
-from task2.utils.paths import NER_DATA_PATH
+from task2.utils.paths import NER_DATA_PATH, NER_MODEL_PATH
 
 
 def train_ner():
@@ -40,4 +40,8 @@ def train_ner():
                 nlp.update([example], drop=0.5, losses=losses)
 
             print(f"Epoch {epoch + 1}, Loss: {losses}")
+
+    nlp.to_disk(NER_MODEL_PATH)
+    print(f'Saved model to {NER_MODEL_PATH}')
+
     return nlp
