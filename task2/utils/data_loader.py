@@ -237,6 +237,7 @@ def processing_image(image, size=(224, 224)):
 
 
 def load_cv_dataset(file_path=CV_DATA_PATH):
+    # download a dataset if it is not present
     if os.path.exists(file_path):
         root = file_path
     else:
@@ -273,16 +274,30 @@ def load_cv_dataset(file_path=CV_DATA_PATH):
 
     all_images = np.array(all_images)
 
+    # X_train, X_test, y_train, y_test = train_test_split(
+    #     all_images, data['labels_num'],
+    #     test_size=0.1,
+    #     random_state=42,
+    #     stratify=data['labels_num']
+    # )
+    #
+    # X_train, X_valid, y_train, y_valid = train_test_split(
+    #     X_train, y_train,
+    #     test_size=0.1,
+    #     random_state=42,
+    #     stratify=y_train
+    # )
+    #
     X_train, X_test, y_train, y_test = train_test_split(
         all_images, data['labels_num'],
-        test_size=0.1,
+        test_size=0.2,
         random_state=42,
         stratify=data['labels_num']
     )
 
-    X_train, X_valid, y_train, y_valid = train_test_split(
+    X_valid, X_test, y_valid, y_test = train_test_split(
         X_train, y_train,
-        test_size=0.1,
+        test_size=0.5,
         random_state=42,
         stratify=y_train
     )
