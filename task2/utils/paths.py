@@ -1,6 +1,6 @@
 # model
-MODEL_NAME = 'ner_model'
-NER_MODEL_PATH = '../task2/' + MODEL_NAME
+NER_MODEL_PATH = '../task2/ner_model'
+CV_MODEL_PATH = '../task2/vgg16/vgg16_model.keras'
 
 # data
 NER_DATA_PATH = '../task2/data/ner_dataset_spacy.json'
