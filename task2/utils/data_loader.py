@@ -1,5 +1,13 @@
+import os
+import cv2
 import json
-from task2.utils.paths import NER_DATA_PATH
+import kagglehub
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+from task2.utils.paths import NER_DATA_PATH, CV_DATA_PATH
+from task2.utils.translate import label, index_to_label, label_to_index
 
 
 def load_new_dataset_spacy_hardcoded():
@@ -208,10 +216,75 @@ def load_new_dataset_spacy_hardcoded():
     return dataset
 
 
-def load_ner_dataset_from_json(file_name=NER_DATA_PATH):
+def load_ner_dataset_from_json(file_path=NER_DATA_PATH):
     try:
-        with open(file_name, 'r') as file:
+        with open(file_path, 'r') as file:
             data = json.load(file)
     except FileNotFoundError:
         data = load_new_dataset_spacy_hardcoded()
     return data
+
+
+def processing_image_from_path(image_path, size=(224, 224)):
+    image = cv2.imread(image_path)
+    return processing_image(image, size=size)
+
+
+def processing_image(image, size=(224, 224)):
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image = cv2.resize(image, size)
+    return image
+
+
+def load_cv_dataset(file_path=CV_DATA_PATH):
+    if os.path.exists(file_path):
+        root = file_path
+    else:
+        root = kagglehub.dataset_download("alessiocorrado99/animals10")
+    root = os.path.join(root, 'raw-img')
+
+    images_path = []
+    labels = []
+
+    # for each animal (separate folder for each)
+    for animal in os.listdir(root):
+        # join the animal folder to path
+        path = os.path.join(root, animal)
+        # add first 1460 images for each animal
+        for img in os.listdir(path)[:1000]:
+            # add image path
+            images_path.append(os.path.join(path, img))
+            # add label (animal name)
+            labels.append(animal)
+
+    data = pd.DataFrame({
+        'images_path': images_path,
+        'labels': labels
+    })
+    data.head()
+
+    data['labels_num'] = data['labels'].map(label_to_index)
+    data['labels'] = data['labels'].map(label)
+
+    all_images = []
+    for i in data['images_path'].values:
+        image = processing_image_from_path(i)
+        all_images.append(image)
+
+    all_images = np.array(all_images)
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        all_images, data['labels_num'],
+        test_size=0.1,
+        random_state=42,
+        stratify=data['labels_num']
+    )
+
+    X_train, X_valid, y_train, y_valid = train_test_split(
+        X_train, y_train,
+        test_size=0.1,
+        random_state=42,
+        stratify=y_train
+    )
+
+    return X_train, y_train, X_valid, y_valid, X_test, y_test
