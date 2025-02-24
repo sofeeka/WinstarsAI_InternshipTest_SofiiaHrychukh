@@ -6,7 +6,7 @@ label = {"cane": "dog",
          "gatto": "cat",
          "mucca": "cow",
          "pecora": "sheep",
-         "ragno" : "spider",
+         "ragno": "spider",
          "scoiattolo": "squirrel"}
 
 label_to_index = {key: idx for idx, key in enumerate(label.keys())}
