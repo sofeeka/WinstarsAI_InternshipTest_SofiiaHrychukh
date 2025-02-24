@@ -11,7 +11,7 @@ from task2.utils.translate import label, label_to_index
 from task2.utils.logger import log
 
 
-def load_ner_dataset_from_json(file_path=NER_DATA_PATH):
+def load_ner_dataset(file_path=NER_DATA_PATH):
     log('Loading NER dataset...')
     with open(file_path, 'r') as file:
         data = json.load(file)

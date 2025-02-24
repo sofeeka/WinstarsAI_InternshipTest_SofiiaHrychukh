@@ -3,13 +3,13 @@ import random
 import spacy
 from spacy.training.example import Example
 
-from task2.utils.data_loader import load_ner_dataset_from_json
+from task2.utils.data_loader import load_ner_dataset
 from task2.utils.paths import NER_DATA_PATH, NER_MODEL_PATH
 from task2.utils.logger import log
 
 
 def train_ner():
-    train_data = load_ner_dataset_from_json(NER_DATA_PATH)
+    train_data = load_ner_dataset(NER_DATA_PATH)
 
     # load spacy base
     log(f'Loading spacy en_core_web_sm base model...')
