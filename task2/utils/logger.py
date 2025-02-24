@@ -1,4 +1,4 @@
-logging = False
+logging = True
 
 
 def log(text):
