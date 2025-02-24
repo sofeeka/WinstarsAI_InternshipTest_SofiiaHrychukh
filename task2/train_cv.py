@@ -6,7 +6,6 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.layers import Dense, Flatten, Activation
 
-
 from task2.utils.data_loader import load_cv_dataset
 from task2.utils.paths import CV_MODEL_PATH
 from task2.utils.logger import log
