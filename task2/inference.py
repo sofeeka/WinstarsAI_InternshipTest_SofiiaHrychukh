@@ -17,4 +17,4 @@ def inference(text, img_path):
     # convert it to text
     cv_label = index_to_label[cv_prediction]
 
-    return any(cv_label.lower() == ent.text.lower() for ent in ner_labels)
+    return any(cv_label.lower() == ent.text.lower() for ent in ner_labels), doc, predictions
