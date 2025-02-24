@@ -18,11 +18,13 @@ I have found `Animal-10` dataset. It was used to train Image Classification mode
 
 ##### NLP and Named Entity Recognition
 
-Using LLM I have generated 20 sentences for every animal present in Animals-10 dataset. These marked sentences were used to train NER model.
+Using LLM I have generated 20 sentences for every animal present in Animals-10 dataset. These marked sentences were used
+to train NER model.
 
 ---
 
 ##### Animals present in the solution:
+
 - dog
 - cat
 - cow
@@ -60,14 +62,22 @@ Using LLM I have generated 20 sentences for every animal present in Animals-10 d
 
 ## Installation Guide
 
-#### 1. Clone the repository
+### 1. Prerequisites
+
+Ensure you have the following installed:
+
+- Python (3.10-3.12)
+- Git
+- Virtual environment tools (venv or conda)
+
+### 2. Clone the repository
 
 ```bash
 git clone <https://github.com/sofeeka/WinstarsAI_InternshipTest_SofiiaHrychukh>
 cd <WinstarsAI_InternshipTest_SofiiaHrychukh>
 ```
 
-#### 2. Set Up Virtual Environment
+### 3. Set Up Virtual Environment
 
 ##### Linux
 
@@ -83,13 +93,13 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-#### 3. Install Dependencies
+### 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-#### 4. Get CV Image Classification Model
+### 5. Get CV Image Classification Model
 
 1. Download it from Google Drive
    [link to model file](https://drive.google.com/file/d/1kmM3VJGTu5a3vYOHmxJ9Xu9rCYsdP9dl/view?usp=sharing)
