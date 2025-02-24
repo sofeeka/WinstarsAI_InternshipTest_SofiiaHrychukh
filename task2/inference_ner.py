@@ -1,7 +1,7 @@
 import os
 import spacy
 
-from task2.utils.train_ner import train_ner
+from task2.train_ner import train_ner
 from task2.utils.paths import NER_MODEL_PATH
 
 

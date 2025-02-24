@@ -1,7 +1,7 @@
 import numpy as np
 
-from task2.utils.inference_ner import inference_ner
-from task2.utils.inference_cv import inference_cv_from_img_path
+from task2.inference_ner import inference_ner
+from task2.inference_cv import inference_cv_from_img_path
 from task2.utils.translate import index_to_label
 
 

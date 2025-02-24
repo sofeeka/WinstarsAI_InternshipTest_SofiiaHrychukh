@@ -3,13 +3,12 @@ import random
 import spacy
 from spacy.training.example import Example
 
-from task2.utils.data_loader import load_ner_dataset_from_json, load_new_dataset_spacy_hardcoded
+from task2.utils.data_loader import load_ner_dataset_from_json
 from task2.utils.paths import NER_DATA_PATH, NER_MODEL_PATH
 
 
 def train_ner():
-    train_data = load_new_dataset_spacy_hardcoded()
-    # train_data = load_ner_dataset_from_json(NER_DATA_PATH)
+    train_data = load_ner_dataset_from_json(NER_DATA_PATH)
 
     # load spacy base
     nlp = spacy.load("en_core_web_sm")
@@ -39,7 +38,7 @@ def train_ner():
                 # train model
                 nlp.update([example], drop=0.5, losses=losses)
 
-            print(f"Epoch {epoch + 1}, Loss: {losses}")
+            print(f'Epoch {epoch + 1}, Loss: {losses}')
 
     nlp.to_disk(NER_MODEL_PATH)
     print(f'Saved model to {NER_MODEL_PATH}')

@@ -3,7 +3,6 @@ import cv2
 import numpy as np
 from tensorflow import keras
 
-from task2.utils.data_loader import processing_image
 from task2.utils.paths import CV_MODEL_PATH
 
 

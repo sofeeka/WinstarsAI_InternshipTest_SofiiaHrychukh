@@ -1,10 +1,10 @@
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import Model, Input
+from tensorflow.keras import Model
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
-from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, GlobalAveragePooling2D, Flatten, Dropout, BatchNormalization, Activation
+from tensorflow.keras.layers import Dense, Flatten, Activation
 
 
 from task2.utils.data_loader import load_cv_dataset
