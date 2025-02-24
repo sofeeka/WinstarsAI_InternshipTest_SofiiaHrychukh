@@ -1,7 +1,7 @@
 import numpy as np
 
 from task2.inference_ner import inference_ner
-from task2.inference_cv import inference_cv_from_img_path
+from task2.inference_cv import inference_cv
 from task2.utils.translate import index_to_label
 
 
@@ -11,7 +11,7 @@ def inference(text, img_path):
     ner_labels = doc.ents
 
     # get predictions for all classes
-    predictions = inference_cv_from_img_path(img_path)
+    predictions = inference_cv(img_path)
     # get most likely class
     cv_prediction = np.argmax(predictions)
     # convert it to text

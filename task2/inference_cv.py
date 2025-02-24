@@ -1,27 +1,8 @@
-import os
 import cv2
 import numpy as np
 from tensorflow import keras
 
 from task2.utils.paths import CV_MODEL_PATH
-
-
-def inference_cv(data, size=(224, 224)):
-    if isinstance(data, np.ndarray):
-        return inference_cv_from_img(data, size)
-    else:
-        return inference_cv_from_img_path(data, size)
-
-
-def inference_cv_from_img_path(img_path, size=(224, 224)):
-    if not os.path.exists(img_path):
-        raise FileNotFoundError(f"Image not found: {img_path}")
-
-    img = cv2.imread(img_path)
-    if img is None:
-        raise ValueError(f"Failed to load image: {img_path}")
-
-    return inference_cv_from_img(img, size=size)
 
 
 def preprocess_image(img, size=(224, 224)):
@@ -38,8 +19,8 @@ def preprocess_image(img, size=(224, 224)):
     return image
 
 
-def inference_cv_from_img(img, size=(224, 224)):
-    # preprocess image
+def inference_cv(img_path, size=(224, 224)):
+    img = cv2.imread(img_path)
     img = preprocess_image(img, size=size)
 
     vgg16 = keras.models.load_model(CV_MODEL_PATH)
