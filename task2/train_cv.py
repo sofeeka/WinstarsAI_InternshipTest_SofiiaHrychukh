@@ -9,6 +9,7 @@ from tensorflow.keras.layers import Dense, Flatten, Activation
 
 from task2.utils.data_loader import load_cv_dataset
 from task2.utils.paths import CV_MODEL_PATH
+from task2.utils.logger import log
 
 
 def train_cv():
@@ -24,6 +25,7 @@ def train_cv():
         fill_mode='nearest'
     )
 
+    log(f'Loading VGG16 base model...')
     vgg16_base = VGG16(
         input_shape=(224, 224, 3),
         include_top=False,
@@ -38,13 +40,13 @@ def train_cv():
     x = Activation('relu')(x)
     output = Dense(10, activation='softmax')(x)
     vgg16 = Model(vgg16_base.input, output)
-    # vgg16.summary()
 
     learning_rate = 0.001
     epochs = 50
     batch_size = 32
     factor = 0.2
 
+    log(f'Compiling CV model...')
     vgg16.compile(
         loss='sparse_categorical_crossentropy',
         metrics=['accuracy'],
@@ -55,6 +57,7 @@ def train_cv():
     reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=factor, patience=3, min_lr=1e-7)
     checkpoint_cb = ModelCheckpoint('../task2/vgg16/model_epoch_{epoch:02d}.keras', save_freq='epoch')
 
+    log(f'Training CV model...')
     history = vgg16.fit(
         aug.flow(x_train, y_train, batch_size=batch_size),
         validation_data=(x_valid, y_valid),
@@ -62,6 +65,7 @@ def train_cv():
         callbacks=[early_stopping, reduce_lr, checkpoint_cb]
     )
 
+    log(f'Saving CV model...')
     vgg16.save(CV_MODEL_PATH)
 
     return vgg16

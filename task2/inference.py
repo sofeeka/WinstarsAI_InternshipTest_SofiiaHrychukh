@@ -3,9 +3,11 @@ import numpy as np
 from task2.inference_ner import inference_ner
 from task2.inference_cv import inference_cv
 from task2.utils.translate import index_to_label
+from task2.utils.logger import log
 
 
 def inference(text, img_path):
+    log('Waiting for predictions...')
     # recognise named entities from ner
     doc = inference_ner(text)
     ner_labels = doc.ents

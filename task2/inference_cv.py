@@ -3,6 +3,7 @@ import numpy as np
 from tensorflow import keras
 
 from task2.utils.paths import CV_MODEL_PATH
+from task2.utils.logger import log
 
 
 def preprocess_image(img, size=(224, 224)):
@@ -20,9 +21,13 @@ def preprocess_image(img, size=(224, 224)):
 
 
 def inference_cv(img_path, size=(224, 224)):
+    log(f'Reading image {img_path}')
     img = cv2.imread(img_path)
+    log(f'Preprocessing image...')
     img = preprocess_image(img, size=size)
 
+    log(f'Loading CV model...')
     vgg16 = keras.models.load_model(CV_MODEL_PATH)
+    log(f'Making predictions...')
     predictions = vgg16.predict(img)
     return predictions

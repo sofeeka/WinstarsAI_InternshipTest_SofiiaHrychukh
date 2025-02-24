@@ -8,9 +8,11 @@ from sklearn.model_selection import train_test_split
 
 from task2.utils.paths import NER_DATA_PATH, CV_DATA_PATH
 from task2.utils.translate import label, label_to_index
+from task2.utils.logger import log
 
 
 def load_ner_dataset_from_json(file_path=NER_DATA_PATH):
+    log('Loading NER dataset...')
     with open(file_path, 'r') as file:
         data = json.load(file)
     return data
@@ -27,6 +29,7 @@ def preprocess_image(image_path, size=(224, 224)):
 
 
 def load_cv_dataset(file_path=CV_DATA_PATH):
+    log('Loading Animals-10 dataset for CV...')
     # download a dataset if it is not present
     if os.path.exists(file_path):
         root = file_path
