@@ -1,20 +1,20 @@
 from task1.models.mnist_classifier_interface import MnistClassifierInterface
 import numpy as np
 from tensorflow import keras
-from tensorflow.keras import layers
+from tensorflow.keras.layers import Input, Dense, Conv2D, MaxPooling2D, Flatten
 
 
 class CNNClassifier(MnistClassifierInterface):
     def __init__(self):
         self.model = keras.Sequential([
-            layers.Input(shape=(28, 28, 1)),
-            layers.Conv2D(32, (3, 3), activation='relu'),
-            layers.MaxPooling2D((2, 2)),
-            layers.Conv2D(64, (3, 3), activation='relu'),
-            layers.MaxPooling2D((2, 2)),
-            layers.Flatten(),
-            layers.Dense(128, activation='relu'),
-            layers.Dense(10, activation='softmax')
+            Input(shape=(28, 28, 1)),
+            Conv2D(32, (3, 3), activation='relu'),
+            MaxPooling2D((2, 2)),
+            Conv2D(64, (3, 3), activation='relu'),
+            MaxPooling2D((2, 2)),
+            Flatten(),
+            Dense(128, activation='relu'),
+            Dense(10, activation='softmax')
         ])
 
     def train(self, X_train: np.array, y_train: np.array):

@@ -1,16 +1,17 @@
 from task1.models.mnist_classifier_interface import MnistClassifierInterface
 import numpy as np
 from tensorflow import keras
-from tensorflow.keras import layers
+from tensorflow.keras.layers import Flatten, Dense, Input
 
 
 class FNNClassifier(MnistClassifierInterface):
     def __init__(self):
         self.model = keras.Sequential([
-            layers.Flatten(input_shape=(28, 28)),
-            layers.Dense(128, activation='relu'),
-            layers.Dense(64, activation='relu'),
-            layers.Dense(10, activation='softmax')
+            Input(shape=(28, 28, 1)),
+            Flatten(),
+            Dense(128, activation='relu'),
+            Dense(64, activation='relu'),
+            Dense(10, activation='softmax')
         ])
 
     def train(self, X_train: np.array, y_train: np.array):
